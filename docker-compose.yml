@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: proposalcraft_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: proposalcraft
+      POSTGRES_PASSWORD: proposalcraft_dev_password
+      POSTGRES_DB: proposalcraft
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U proposalcraft -d proposalcraft"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: proposalcraft_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://proposalcraft:proposalcraft_dev_password@db:5432/proposalcraft
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY}
+      NVIDIA_BASE_URL: ${NVIDIA_BASE_URL:-https://integrate.api.nvidia.com/v1}
+      NVIDIA_MODEL: ${NVIDIA_MODEL:-meta/llama-3.3-70b-instruct}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-dev-insecure-secret-key-change-in-production-1234}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://localhost:8000}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: proposalcraft_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  postgres_data:
