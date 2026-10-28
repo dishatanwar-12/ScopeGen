@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     
     # URLs and CORS
     FRONTEND_URL: str = "http://localhost:5173"
-    BACKEND_PUBLIC_URL: str = "http://localhost:8000"
+    BACKEND_PUBLIC_URL: str = "http://localhost:8008"
     CORS_ORIGINS: Union[List[str], str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
