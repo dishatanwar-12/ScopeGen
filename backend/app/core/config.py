@@ -1,6 +1,7 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import List
+from pydantic import field_validator
+from typing import List, Union
 
 class Settings(BaseSettings):
     APP_NAME: str = "ProposalCraft AI"
@@ -26,7 +27,7 @@ class Settings(BaseSettings):
     # URLs and CORS
     FRONTEND_URL: str = "http://localhost:5173"
     BACKEND_PUBLIC_URL: str = "http://localhost:8000"
-    CORS_ORIGINS: List[str] = [
+    CORS_ORIGINS: Union[List[str], str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
@@ -37,7 +38,21 @@ class Settings(BaseSettings):
     # File Uploads
     UPLOAD_DIR: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "uploads")
     UPLOAD_MAX_SIZE_MB: int = 10
-    ALLOWED_EXTENSIONS: List[str] = ["txt", "pdf", "docx"]
+    ALLOWED_EXTENSIONS: Union[List[str], str] = ["txt", "pdf", "docx"]
+
+    @field_validator("ALLOWED_EXTENSIONS", mode="before")
+    @classmethod
+    def parse_allowed_extensions(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str):
+            return [ext.strip().lstrip(".") for ext in v.split(",") if ext.strip()]
+        return v
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str):
+            return [orig.strip() for orig in v.split(",") if orig.strip()]
+        return v
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -46,3 +61,4 @@ class Settings(BaseSettings):
     )
 
 settings = Settings()
+
