@@ -68,3 +68,4 @@ All endpoints are versioned under `/api/v1`. Protected endpoints require HTTP Be
 - `GET /api/v1/system/health` — Basic API health check
 - `GET /api/v1/system/ai-status` — Check NVIDIA NIM connectivity, verify configured model without leaking secrets
 - `GET /api/v1/system/dashboard-stats` — Real database-backed statistics for current user
+

@@ -117,3 +117,4 @@ class GeneratedProposalModel(BaseModel):
     risks_and_mitigations: List[Dict[str, str]] # [{"risk": "...", "mitigation": "..."}]
     unresolved_questions: List[GeneratedQuestionModel] = Field(default_factory=list)
     internal_review_warnings: List[str] = Field(default_factory=list)
+

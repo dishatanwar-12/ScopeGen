@@ -72,3 +72,4 @@ erDiagram
 3. **Deterministic Synthesis**: In `proposal_generation.py`, the commercial section is composed programmatically from trusted database values.
 4. **Adversarial Validation**: A regex & semantic scanner inspects all generated content. Any unapproved currency symbols, rate figures, or unauthorized deadline claims are stripped or flagged as critical review questions.
 5. **No Blind Fallbacks**: If commercial details are missing, the UI and document output state: `"Pricing not provided — confirmation required."` Never `0` or free.
+

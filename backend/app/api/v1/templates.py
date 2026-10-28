@@ -142,3 +142,4 @@ async def approve_template(
     await db.commit()
     await db.refresh(tpl)
     return tpl
+

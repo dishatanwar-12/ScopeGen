@@ -86,3 +86,4 @@ def test_prompt_injection_sanitization():
     assert "[UNTRUSTED INSTRUCTION DEFANGED]" in sanitized
     assert len(warnings) >= 1
     assert any("prompt injection" in w.lower() for w in warnings)
+

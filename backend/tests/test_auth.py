@@ -65,3 +65,4 @@ async def test_protected_me_endpoint(client: AsyncClient, auth_headers_a):
 async def test_unauthorized_access_rejected(client: AsyncClient):
     response = await client.get("/api/v1/auth/me")
     assert response.status_code == 401
+

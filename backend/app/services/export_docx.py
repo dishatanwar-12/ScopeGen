@@ -185,3 +185,4 @@ def render_docx_table(doc: docx.Document, rows: List[List[str]]):
 
     p_after = doc.add_paragraph()
     p_after.paragraph_format.space_after = Pt(6)
+

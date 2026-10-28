@@ -32,3 +32,4 @@ class ClientOut(ClientBase):
 
     class Config:
         from_attributes = True
+

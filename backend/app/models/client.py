@@ -27,3 +27,4 @@ class Client(Base):
     # Relationships
     owner = relationship("User", back_populates="clients")
     projects = relationship("Project", back_populates="client", cascade="all, delete-orphan")
+

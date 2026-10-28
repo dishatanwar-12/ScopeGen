@@ -32,3 +32,4 @@ class ProposalTemplateOut(ProposalTemplateBase):
 
     class Config:
         from_attributes = True
+

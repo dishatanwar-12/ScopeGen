@@ -49,3 +49,4 @@ def decode_access_token(token: str) -> Optional[dict]:
         return decoded_payload
     except jwt.PyJWTError:
         return None
+

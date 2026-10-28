@@ -361,3 +361,4 @@ async def generate_and_save_proposal(
     await db.refresh(proposal)
 
     return proposal
+

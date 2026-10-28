@@ -196,3 +196,4 @@ export interface DashboardStats {
     updated_at: string;
   }>;
 }
+

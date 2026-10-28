@@ -222,3 +222,4 @@ async def delete_document(
     await db.delete(doc)
     await db.commit()
     return None
+

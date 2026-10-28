@@ -78,3 +78,4 @@ def test_nvidia_rate_limit_retry():
             service.generate_chat_completion("sys", "user")
 
         assert "Failed to complete proposal generation after 2 attempts" in str(exc_info.value)
+

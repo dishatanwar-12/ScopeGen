@@ -88,3 +88,4 @@ async def get_dashboard_stats(
         "open_questions": open_questions,
         "recent_proposals": recent_proposals
     }
+

@@ -62,3 +62,4 @@ Thumbs.db
 # Storage / Uploads
 backend/uploads/*
 !backend/uploads/.gitkeep
+

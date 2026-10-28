@@ -76,3 +76,4 @@ async def get_me(current_user: User = Depends(get_current_user)):
 async def logout(current_user: User = Depends(get_current_user)):
     """Logs out user (stateless JWT client-side clearance)."""
     return {"message": "Logged out successfully."}
+

@@ -74,3 +74,4 @@ async def update_confirmation_question(
     await db.commit()
     await db.refresh(q)
     return q
+

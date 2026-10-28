@@ -133,3 +133,4 @@ def extract_and_review_facts(
         can_generate=can_generate,
         readiness_score=readiness_score
     )
+

@@ -274,3 +274,4 @@ def build_reportlab_table(rows: List[List[str]], text_style: ParagraphStyle) -> 
         ('RIGHTPADDING', (0, 0), (-1, -1), 6),
     ]))
     return t
+

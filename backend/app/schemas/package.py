@@ -58,3 +58,4 @@ class ServicePackageOut(ServicePackageBase):
 
     class Config:
         from_attributes = True
+

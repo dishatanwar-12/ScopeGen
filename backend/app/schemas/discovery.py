@@ -34,3 +34,4 @@ class DocumentUploadResponse(BaseModel):
     document: SourceDocumentOut
     message: str
     warnings: list[str] = []
+

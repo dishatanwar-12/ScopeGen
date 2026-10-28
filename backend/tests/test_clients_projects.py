@@ -61,3 +61,4 @@ async def test_project_crud_and_isolation(client: AsyncClient, auth_headers_a, a
     # User B cannot access User A's project
     res_proj_b = await client.get(f"/api/v1/projects/{proj_id}", headers=auth_headers_b)
     assert res_proj_b.status_code == 404
+

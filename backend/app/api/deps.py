@@ -51,3 +51,4 @@ async def get_current_admin(
             detail="Administrative privileges required to perform this action"
         )
     return current_user
+

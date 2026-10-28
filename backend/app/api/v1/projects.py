@@ -161,3 +161,4 @@ async def delete_project(
     await db.delete(project)
     await db.commit()
     return None
+

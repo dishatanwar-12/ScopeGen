@@ -42,3 +42,4 @@ class Project(Base):
     discovery_notes = relationship("DiscoveryNote", back_populates="project", cascade="all, delete-orphan")
     source_documents = relationship("SourceDocument", back_populates="project", cascade="all, delete-orphan")
     proposals = relationship("Proposal", back_populates="project", cascade="all, delete-orphan")
+

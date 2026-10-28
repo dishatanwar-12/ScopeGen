@@ -227,3 +227,4 @@ async def seed_initial_data():
 
         await db.commit()
         logger.info("Database seeding completed successfully.")
+

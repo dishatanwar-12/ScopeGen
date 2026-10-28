@@ -50,3 +50,4 @@ def test_docx_export_structure():
     assert len(docx_bytes) > 2000
     # Standard DOCX (Zip archive) header check: PK\x03\x04
     assert docx_bytes.startswith(b"PK\x03\x04")
+

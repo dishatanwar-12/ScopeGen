@@ -101,3 +101,4 @@ class ConfirmationQuestion(Base):
     )
 
     proposal = relationship("Proposal", back_populates="questions")
+

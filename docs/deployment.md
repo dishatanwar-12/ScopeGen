@@ -130,3 +130,4 @@ If an NVIDIA API key is compromised:
 - [ ] **Pricing Firewall**: Verify that SOWs generated from unpriced packages show *"Pricing not provided — confirmation required"* and never fabricate `$0` or arbitrary amounts.
 - [ ] **PDF Download**: Click *"Export PDF"*; verify generated ReportLab PDF opens cleanly.
 - [ ] **DOCX Download**: Click *"Export DOCX"*; verify file opens in Microsoft Word / LibreOffice.
+

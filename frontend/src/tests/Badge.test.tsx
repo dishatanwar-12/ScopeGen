@@ -19,3 +19,4 @@ describe('Badge Component', () => {
     expect(screen.getByText('Open')).toBeDefined();
   });
 });
+

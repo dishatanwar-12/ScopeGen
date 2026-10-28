@@ -98,3 +98,4 @@ def extract_text_from_file(file_bytes: bytes, filename: str) -> Tuple[str, str, 
     warnings.extend(safety_warnings)
 
     return raw_text, sanitized_text, warnings
+

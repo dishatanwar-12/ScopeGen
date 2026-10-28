@@ -145,3 +145,4 @@ export const ProposalsListPage: React.FC = () => {
     </div>
   );
 };
+
