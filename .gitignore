@@ -20,12 +20,14 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+backend/venv/
 backend/.venv/
 venv/
 ENV/
 *.db
 *.sqlite
 *.sqlite3
+*.log
 
 # Node / Frontend
 node_modules/

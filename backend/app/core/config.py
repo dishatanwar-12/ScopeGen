@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     NVIDIA_API_KEY: str = ""
     NVIDIA_BASE_URL: str = "https://integrate.api.nvidia.com/v1"
     # Tested, active NVIDIA hosted models
-    NVIDIA_MODEL: str = "meta/llama-3.3-70b-instruct"
+    NVIDIA_MODEL: str = "meta/llama-3.2-11b-vision-instruct"
     NVIDIA_TIMEOUT_SECONDS: int = 90
     NVIDIA_MAX_RETRIES: int = 3
     

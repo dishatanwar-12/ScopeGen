@@ -116,12 +116,12 @@ export const ClientsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Clients & Accounts</h1>
-          <p className="text-sm text-slate-500">Manage client profiles, contacts, and related SOW projects</p>
+          <h1 className="text-2xl font-serif font-semibold text-slate-900">Clients & Accounts</h1>
+          <p className="text-xs text-slate-500">Manage client profiles, contacts, and related SOW projects</p>
         </div>
         <button
           onClick={handleOpenCreate}
-          className="inline-flex items-center space-x-2 px-4 py-2 bg-brand-900 hover:bg-brand-800 text-white text-sm font-semibold rounded-lg shadow-xs transition-colors self-start sm:self-auto"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-[#235c3b] hover:bg-[#1b472e] text-white text-xs font-semibold rounded-xl shadow-xs transition-colors self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add Client</span>
@@ -135,7 +135,7 @@ export const ClientsPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by company, contact, or industry..."
-          className="w-full px-3 py-2 pl-9 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent bg-white"
+          className="w-full px-3.5 py-2 pl-9 rounded-xl border border-[#E5E8E2] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#235c3b]/20 focus:border-[#235c3b] bg-white transition-all"
         />
         <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
       </div>

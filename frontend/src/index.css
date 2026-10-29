@@ -4,12 +4,19 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #1E293B;
-  background-color: #F8FAFC;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1A1A1A;
+  background-color: #F3EFEA;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', 'Cormorant Garamond', 'Newsreader', Georgia, serif;
 }
 
 code, pre {
   font-family: 'JetBrains Mono', monospace;
 }
+
+
 

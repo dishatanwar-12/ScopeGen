@@ -1,66 +1,86 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Search, Bell, ChevronDown, LogOut, User as UserIcon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { FileText, LogOut, User as UserIcon } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center space-x-3">
-            <Link to="/dashboard" className="flex items-center space-x-2.5">
-              <div className="w-9 h-9 rounded-lg bg-brand-900 flex items-center justify-center text-white shadow-sm">
-                <FileText className="w-5 h-5 text-brand-300" />
-              </div>
-              <div>
-                <span className="font-bold text-lg text-slate-900 tracking-tight">ProposalCraft</span>
-                <span className="text-xs ml-1.5 px-2 py-0.5 rounded font-mono font-medium bg-brand-100 text-brand-700">NVIDIA NIM</span>
-              </div>
-            </Link>
+    <header className="bg-[#F3EFEA] border-b border-[#E7E2D8] sticky top-0 z-30 px-8 py-3.5">
+      <div className="flex items-center justify-between gap-6">
+        {/* Search Bar matching ScopeGen design */}
+        <div className="relative max-w-md w-full">
+          <div className="relative flex items-center">
+            <Search className="w-4 h-4 text-[#8C877D] absolute left-3.5 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search proposals, clients, templates..."
+              className="w-full pl-10 pr-14 py-2 text-xs md:text-sm bg-[#EAE5DE] border border-[#DDD7CE] rounded-xl text-[#1A1A1A] placeholder-[#8C877D] focus:outline-hidden focus:ring-1 focus:ring-[#111215] transition-all"
+            />
+            <div className="absolute right-3 flex items-center pointer-events-none">
+              <span className="text-[10px] font-medium text-[#73706B] bg-[#F3EFEA]/80 border border-[#DDD7CE] px-1.5 py-0.5 rounded shadow-2xs">
+                ⌘ K
+              </span>
+            </div>
           </div>
+        </div>
 
-          <div className="flex items-center space-x-4">
-            {user ? (
-              <div className="flex items-center space-x-3">
-                <div className="text-right hidden sm:block">
-                  <div className="text-sm font-semibold text-slate-900">{user.full_name}</div>
-                  <div className="text-xs text-slate-500 capitalize flex items-center justify-end space-x-1">
-                    <span>{user.role}</span>
-                    {user.role === 'admin' && (
-                      <span className="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded font-medium">ADMIN</span>
-                    )}
-                  </div>
-                </div>
+        {/* Right Action Icons: Notification Bell & User Profile */}
+        <div className="flex items-center space-x-4">
+          {/* Notification Bell */}
+          <button
+            type="button"
+            className="relative w-9 h-9 rounded-full flex items-center justify-center text-[#4A4742] hover:text-[#1A1A1A] hover:bg-[#EAE5DE] transition-colors"
+            title="Notifications"
+          >
+            <Bell className="w-4 h-4" />
+            <span className="absolute top-2 right-2 w-2 h-2 bg-[#E05238] rounded-full ring-2 ring-[#F3EFEA]"></span>
+          </button>
 
-                <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
-                  <UserIcon className="w-4 h-4" />
-                </div>
-
-                <button
-                  onClick={logout}
-                  title="Log out"
-                  className="p-1.5 text-slate-400 hover:text-slate-600 rounded-md hover:bg-slate-100 transition-colors"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
+          {/* User Profile */}
+          <div className="relative">
+            <button
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="flex items-center space-x-2.5 p-1 rounded-xl hover:bg-[#EAE5DE] transition-colors text-left"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#EAE5DE] border border-[#DDD7CE] flex items-center justify-center text-[#5C5954]">
+                <UserIcon className="w-4 h-4" />
               </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-md hover:bg-slate-50"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/register"
-                  className="text-sm font-medium text-white bg-brand-900 hover:bg-brand-800 px-3.5 py-1.5 rounded-md shadow-sm transition-colors"
-                >
-                  Get Started
-                </Link>
+              <div className="hidden sm:block text-left pr-1">
+                <div className="text-xs font-semibold text-[#1A1A1A] leading-tight">
+                  {user?.full_name || 'Sarah Khan'}
+                </div>
+                <div className="text-[10px] text-[#73706B] capitalize leading-tight">
+                  Project Manager
+                </div>
+              </div>
+              <ChevronDown className="w-3.5 h-3.5 text-[#73706B]" />
+            </button>
+
+            {/* Dropdown Menu */}
+            {showDropdown && (
+              <div className="absolute right-0 mt-2 w-48 bg-[#FAF8F5] border border-[#E7E2D8] rounded-2xl shadow-xl py-1.5 z-50 text-xs">
+                <div className="px-3 py-2 border-b border-[#E7E2D8]">
+                  <p className="font-semibold text-[#1A1A1A]">{user?.full_name || 'Sarah Khan'}</p>
+                  <p className="text-[11px] text-[#73706B] truncate">{user?.email || 'sarah@scopegen.ai'}</p>
+                </div>
+                {user ? (
+                  <button
+                    onClick={logout}
+                    className="w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors rounded-b-xl"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
+                ) : (
+                  <a
+                    href="/login"
+                    className="block px-3 py-2 text-[#1A1A1A] hover:bg-[#EAE5DE] transition-colors"
+                  >
+                    Sign In
+                  </a>
+                )}
               </div>
             )}
           </div>

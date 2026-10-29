@@ -46,12 +46,12 @@ export const ProposalsListPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Proposals & Statements of Work</h1>
-          <p className="text-sm text-slate-500">All drafted commercial proposals and SOW documents</p>
+          <h1 className="text-2xl font-serif font-semibold text-slate-900">Proposals & Statements of Work</h1>
+          <p className="text-xs text-slate-500">All drafted commercial proposals and SOW documents</p>
         </div>
         <Link
           to="/projects"
-          className="inline-flex items-center space-x-2 px-4 py-2 bg-brand-900 hover:bg-brand-800 text-white text-sm font-semibold rounded-lg shadow-xs transition-colors self-start sm:self-auto"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-[#235c3b] hover:bg-[#1b472e] text-white text-xs font-semibold rounded-xl shadow-xs transition-colors self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>New Proposal Intake</span>
@@ -66,15 +66,15 @@ export const ProposalsListPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search proposals by title or client..."
-            className="w-full px-3 py-2 pl-9 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-[#E5E8E2] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#235c3b]/20 focus:border-[#235c3b] bg-white transition-all"
           />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" />
         </div>
 
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-full sm:w-auto px-3.5 py-2 rounded-xl border border-[#E5E8E2] text-xs bg-white focus:outline-hidden focus:ring-2 focus:ring-[#235c3b]/20 focus:border-[#235c3b] transition-all"
         >
           <option value="">All Statuses</option>
           <option value="draft">Draft</option>

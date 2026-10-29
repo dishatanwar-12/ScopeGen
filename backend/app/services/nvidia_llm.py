@@ -24,7 +24,7 @@ class NvidiaLLMService:
         timeout: Optional[int] = None,
         max_retries: Optional[int] = None
     ):
-        self.api_key = api_key or settings.NVIDIA_API_KEY
+        self.api_key = api_key if api_key is not None else settings.NVIDIA_API_KEY
         self.base_url = base_url or settings.NVIDIA_BASE_URL
         self.model = model or settings.NVIDIA_MODEL
         self.timeout = timeout or settings.NVIDIA_TIMEOUT_SECONDS
@@ -177,8 +177,8 @@ class NvidiaLLMService:
         )
 
         try:
-            # Parse JSON
-            parsed_data = json.loads(raw_text)
+            # Parse JSON with strict=False to gracefully permit raw newlines in markdown content strings
+            parsed_data = json.loads(raw_text, strict=False)
             validated_proposal = GeneratedProposalModel.model_validate(parsed_data)
             return validated_proposal, metadata
         except (json.JSONDecodeError, Exception) as parse_err:
@@ -188,13 +188,23 @@ class NvidiaLLMService:
             json_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', raw_text, re.DOTALL)
             if json_match:
                 try:
-                    parsed_data = json.loads(json_match.group(1))
+                    parsed_data = json.loads(json_match.group(1), strict=False)
                     validated_proposal = GeneratedProposalModel.model_validate(parsed_data)
                     return validated_proposal, metadata
                 except Exception as inner_err:
-                    raise NvidiaServiceError(
-                        f"NVIDIA NIM returned unparseable proposal structure: {str(inner_err)}"
-                    )
+                    pass
+            
+            # Robust fallback: extract from outermost braces
+            brace_start = raw_text.find('{')
+            brace_end = raw_text.rfind('}')
+            if brace_start != -1 and brace_end != -1 and brace_end > brace_start:
+                try:
+                    parsed_data = json.loads(raw_text[brace_start:brace_end+1], strict=False)
+                    validated_proposal = GeneratedProposalModel.model_validate(parsed_data)
+                    return validated_proposal, metadata
+                except Exception as brace_err:
+                    logger.warning(f"Outermost brace JSON parse failed: {str(brace_err)}")
+
             raise NvidiaServiceError(
                 f"NVIDIA model output did not adhere to required proposal schema: {str(parse_err)}"
             )

@@ -8,16 +8,18 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ status, className = '' }) => {
   const norm = status.toLowerCase();
 
-  let colorClasses = 'bg-slate-100 text-slate-700 border-slate-200';
+  let colorClasses = 'bg-[#EDE8E0] text-[#73706B] border-[#DDD7CE]';
 
   if (norm === 'approved' || norm === 'resolved') {
-    colorClasses = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+    colorClasses = 'bg-[#E6F5EB] text-[#2C8A4D] border-[#CAEAD4]';
   } else if (norm === 'draft' || norm === 'open' || norm === 'intake') {
-    colorClasses = 'bg-amber-50 text-amber-800 border-amber-200';
-  } else if (norm === 'in_review' || norm === 'answered' || norm === 'proposal_ready') {
-    colorClasses = 'bg-blue-50 text-blue-800 border-blue-200';
+    colorClasses = 'bg-[#FAEDE2] text-[#B3662E] border-[#F4DCBE]';
+  } else if (norm === 'in_progress' || norm === 'in progress' || norm === 'sent' || norm === 'proposal_ready') {
+    colorClasses = 'bg-[#E8EDFA] text-[#4769D6] border-[#D0DCF7]';
+  } else if (norm === 'in_review' || norm === 'client_review' || norm === 'client review' || norm === 'in review' || norm === 'answered') {
+    colorClasses = 'bg-[#F0EBFA] text-[#7849C4] border-[#E1D4F5]';
   } else if (norm === 'archived' || norm === 'dismissed') {
-    colorClasses = 'bg-slate-100 text-slate-500 border-slate-200';
+    colorClasses = 'bg-[#EDE8E0] text-[#73706B] border-[#DDD7CE]';
   }
 
   const formatText = (txt: string) => {
@@ -26,10 +28,9 @@ export const Badge: React.FC<BadgeProps> = ({ status, className = '' }) => {
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${colorClasses} ${className}`}
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium border ${colorClasses} ${className}`}
     >
       {formatText(status)}
     </span>
   );
 };
-

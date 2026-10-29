@@ -40,8 +40,8 @@ export const TemplatesPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Proposal Templates Library</h1>
-        <p className="text-sm text-slate-500">
+        <h1 className="text-2xl font-serif font-semibold text-slate-900">Proposal Templates Library</h1>
+        <p className="text-xs text-slate-500">
           Standardized proposal layouts, branding palettes, and required structural sections
         </p>
       </div>
@@ -60,10 +60,10 @@ export const TemplatesPage: React.FC = () => {
               <div
                 key={tpl.id}
                 onClick={() => setSelectedTemplate(tpl)}
-                className={`p-4 rounded-xl border cursor-pointer transition-all ${
+                className={`p-4 rounded-2xl border cursor-pointer transition-all ${
                   selectedTemplate?.id === tpl.id
-                    ? 'bg-white border-brand-900 shadow-xs'
-                    : 'bg-white border-slate-200/80 hover:border-slate-300'
+                    ? 'bg-white border-[#235c3b] ring-1 ring-[#235c3b]/30 shadow-xs'
+                    : 'bg-white border-[#ECEEE9] hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-start justify-between">

@@ -102,8 +102,8 @@ export const PackagesPage: React.FC = () => {
     <div className="space-y-6 max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Approved Service Packages</h1>
-          <p className="text-sm text-slate-500">
+          <h1 className="text-2xl font-serif font-semibold text-slate-900">Approved Service Packages</h1>
+          <p className="text-xs text-slate-500">
             Catalog of company-authorized deliverables, activity boundaries, and approved rate schedules
           </p>
         </div>
@@ -111,7 +111,7 @@ export const PackagesPage: React.FC = () => {
         {isAdmin && (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-brand-900 hover:bg-brand-800 text-white text-sm font-semibold rounded-lg shadow-xs transition-colors self-start sm:self-auto"
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-[#235c3b] hover:bg-[#1b472e] text-white text-xs font-semibold rounded-xl shadow-xs transition-colors self-start sm:self-auto"
           >
             <Plus className="w-4 h-4" />
             <span>New Service Package</span>
